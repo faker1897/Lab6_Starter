@@ -22,7 +22,10 @@ function getRecipesFromStorage() {
 	// A9. TODO - Complete the functionality as described in this function
 	//           header. It is possible in only a single line, but should
 	//           be no more than a few lines.= []
-	return JSON.parse(localStorage.getItem('recipes'))
+
+		return  JSON.parse(localStorage.getItem('recipes'))
+
+
 }
 
 /**
@@ -39,6 +42,9 @@ function addRecipesToDocument(recipes) {
 	//            create a <recipe-card> element for each one, and populate
 	//            each <recipe-card> with that recipe data using element.data = ...
 	//            Append each element to <main>
+	if(recipes==null || !Array.isArray(recipes)){
+		return
+	}
 	for(let recipe of recipes){
 		let recipeCard = document.createElement('recipe-card')
 		console.log(recipeCard)
@@ -57,7 +63,10 @@ function saveRecipesToStorage(recipes) {
 	// B1. TODO - Complete the functionality as described in this function
 	//            header. It is possible in only a single line, but should
 	//            be no more than a few lines.
-	const recipesNow = JSON.parse(localStorage.getItem('recipes'));
+	let recipesNow = JSON.parse(localStorage.getItem('recipes'));
+	if(recipesNow==null){
+		recipesNow=[]
+	}
 	recipesNow.push(recipes);
 	localStorage.setItem('recipes', JSON.stringify(recipesNow));
 }
